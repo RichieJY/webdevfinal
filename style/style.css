@@ -1,0 +1,42 @@
+body {
+    background-image: url("backdrop.jpg");
+    background-size: cover;
+    background-repeat: repeat;
+    background-size: cover;
+  }
+  
+  .responsive-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .modal-dialog {
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#welcome {
+    color: white;
+    text-align: center;
+    font-size: 40px;
+}
+
+#logInPrompt {
+    color: white;
+    text-align: center;
+    font-size: 20px;        
+}
+
+.modal-header, h4, .close {
+    background-color: #001aff;
+    color:rgb(255, 255, 255) !important;
+    text-align: center;
+    font-size: 30px;
+  }
+  .modal-footer {
+    background-color: #ff0000;
+  }
