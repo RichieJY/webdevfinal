@@ -40,3 +40,21 @@ body {
   .modal-footer {
     background-color: #ff0000;
   }
+
+  #welcomeMessage {
+    color: white;
+    font-size: 40px;;
+  }
+
+#eventLog,
+#inventoryLog,
+#serverLog {
+    display: none;
+}
+
+.center-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh; /* take up most of the height */
+}
