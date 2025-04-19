@@ -1,0 +1,50 @@
+[
+    { 
+        "type" : "event",
+        "date": "04/15/2025",
+        "note": "Tyler got a PC, group is formed back together. Need to find a good server",
+        "user": "Richie Y."
+    },
+    {
+        "type" : "event",
+        "date": "04/16/2025",
+        "note": "Played on a Server Called 'Titan', it was a Chernarus Server.",
+        "user": "Richie Y."
+    },
+    {
+        "type" : "event",
+        "date": "04/17/2025",
+        "note": "Played on Titan again. Moved to 'Bastion US1'. Much harder, more vanilla.",
+        "user": "Richie Y."
+    },
+    {
+        "type" : "event",
+        "date": "04/19/2025",
+        "note": "Base started on Bastion US1. Will check it tomorrow.",
+        "user": "Tyler W."
+    },
+    { 
+        "type" : "event",
+        "date":"04/20/2025",
+        "note": "Base is there. Added a few more things. Will check it tomorrow. ",
+        "user": "Logan K."
+    },
+    {
+        "type" : "inventory",
+        "date" : "04/19/2025",
+        "note" : "Nothing to report...",
+        "user" : "Richie Y."    
+    },
+    {
+        "type" : "server",
+        "date" : "04/16/2025",
+        "note" : "Server: Titan. Rating: 2/5. Notes: Mainly a Pvp Chernarus server. Nothing special.",
+        "user": "Richie Y."
+    },
+    {
+        "type" : "server",
+        "date" : "04/17/2025",
+        "note" : "Server: Bastion US1. Rating: 4/5. Notes: Very vanilla + feeling. Good server.",
+        "user": "Richie Y."
+    }
+]
