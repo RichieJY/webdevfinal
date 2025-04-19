@@ -39,6 +39,7 @@ $(document).ready(function () {
             <div class="border rounded p-2 mb-2 bg-light" data-id="${entry.date}">
               <strong>${entry.date}</strong> - ${entry.note} <em class="text-muted">(${entry.user})</em>
               <button class="btn btn-danger btn-sm float-end delete-btn">Delete</button>
+              <button class="btn btn-warning btn-sm float-end me-2 edit-btn">Edit</button>
             </div>
           `;
         });
@@ -88,13 +89,14 @@ $(document).ready(function () {
     renderLogCard("server");
   });
 
-  // Handle save
+  // Handle save (new entry or update)
   $(document).on("submit", "#entryForm", function (e) {
     e.preventDefault();
     const type = $(this).data("logtype");
     const date = $("#entryDate").val();
     const comments = $("#entryComments").val();
 
+    // Create the new or updated entry
     const newEntry = {
       date,
       note: comments,
@@ -106,15 +108,29 @@ $(document).ready(function () {
       <div class="border rounded p-2 mb-2 bg-light" data-id="${newEntry.date}">
         <strong>${newEntry.date}</strong> - ${newEntry.note} <em class="text-muted">(${newEntry.user})</em>
         <button class="btn btn-danger btn-sm float-end delete-btn">Delete</button>
+        <button class="btn btn-warning btn-sm float-end me-2 edit-btn">Edit</button>
       </div>
     `;
 
-    $("#previousEntries").prepend(entryHtml);
+    // If we're updating, replace the previous entry in the DOM
+    if ($(this).data("editing")) {
+      const entryDate = $(this).data("entryDate");
+      $(`[data-id="${entryDate}"]`).replaceWith(entryHtml);
+      $(this).removeData("editing");  // Clear the editing flag
+    } else {
+      $("#previousEntries").prepend(entryHtml);
+    }
+
     $("#entryForm")[0].reset();
 
     // Optional: save to localStorage (does NOT affect logs.json)
     const savedEntries = JSON.parse(localStorage.getItem("logEntries") || "[]");
-    savedEntries.push(newEntry);
+    const index = savedEntries.findIndex(entry => entry.date === newEntry.date);
+    if (index > -1) {
+      savedEntries[index] = newEntry; // Update the existing entry
+    } else {
+      savedEntries.push(newEntry); // Add a new entry
+    }
     localStorage.setItem("logEntries", JSON.stringify(savedEntries));
   });
 
@@ -130,5 +146,23 @@ $(document).ready(function () {
     let savedEntries = JSON.parse(localStorage.getItem("logEntries") || "[]");
     savedEntries = savedEntries.filter(entry => entry.date !== entryDate);
     localStorage.setItem("logEntries", JSON.stringify(savedEntries));
+  });
+
+  // Handle edit button click
+  $(document).on("click", ".edit-btn", function () {
+    const entryDiv = $(this).closest('.border');
+    const entryDate = entryDiv.data('id');
+    const entryNote = entryDiv.find('strong').next().text().trim();
+
+    // Pre-fill the form with the entry's data
+    $("#entryDate").val(entryDate);
+    $("#entryComments").val(entryNote);
+
+    // Change the save button to "Update"
+    const form = $("#entryForm");
+    form.find('button').text("Update").removeClass("btn-success").addClass("btn-info");
+
+    // Mark the form as "editing" and associate the entry date for later identification
+    form.data("editing", true).data("entryDate", entryDate);
   });
 });
