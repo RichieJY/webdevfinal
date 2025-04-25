@@ -3,7 +3,6 @@ final project for webdev <br>
 
 04/19 <br>
 TODO:
-      - Make an "are you sure you want to delete" alert, but not an actual alert <br>
       - Add a footer with something <br>
       - Export button to print data to the console, JSON formatted <br>
       - All the readME stuff <br>
