@@ -1,55 +1,68 @@
-body {
-    background-image: url("backdrop.jpg");
-    background-size: cover;
-    background-repeat: repeat;
-    background-size: cover;
-  }
-  
-  .responsive-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1rem;
-    box-sizing: border-box;
-    width: 100%;
-  }
+/* Ensure the body takes up the full height of the screen */
+html, body {
+  height: 100%;
+  margin: 0;
+}
 
-  .modal-dialog {
-    display: flex;
-    align-items: center;
-    min-height: 100vh;
+/* Main content container */
+body {
+  display: flex;
+  flex-direction: column; /* Stack the content vertically */
+  min-height: 100%; /* Ensure it takes full height */
+  background-image: url("backdrop.jpg");
+  background-size: cover;
+  background-repeat: repeat;
+}
+
+/* Responsive container settings */
+.responsive-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* Modal settings */
+.modal-dialog {
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
 }
 
 #welcome {
-    color: white;
-    text-align: center;
-    font-size: 40px;
+  color: white;
+  text-align: center;
+  font-size: 40px;
 }
 
 #logInPrompt {
-    color: white;
-    text-align: center;
-    font-size: 20px;        
+  color: white;
+  text-align: center;
+  font-size: 20px;
 }
 
 .modal-header, h4, .close {
-    background-color: #001aff;
-    color:rgb(255, 255, 255) !important;
-    text-align: center;
-    font-size: 30px;
-  }
-  .modal-footer {
-    background-color: #ff0000;
-  }
+  background-color: #001aff;
+  color: rgb(255, 255, 255) !important;
+  text-align: center;
+  font-size: 30px;
+}
 
-  #welcomeMessage {
-    color: white;
-    font-size: 40px;;
-  }
+.modal-footer {
+  background-color: #ff0000;
+}
 
+#welcomeMessage {
+  color: white;
+  font-size: 40px;
+}
+
+/* Log section settings */
 #eventLog,
 #inventoryLog,
 #serverLog {
-    display: none;
+  display: none;
 }
 
 .center-box {
@@ -57,4 +70,13 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 80vh; /* take up most of the height */
+}
+
+/* Push footer to the bottom */
+footer {
+  background-color: #444444;
+  color: white;
+  text-align: center;
+  margin-top: auto; /* Push footer to the bottom */
+  width: 100%;
 }

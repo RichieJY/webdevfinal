@@ -12,6 +12,8 @@ $(document).ready(function () {
       $("#myBtn").text("Log Off").removeClass("btn-primary").addClass("btn-danger");
       $("#myModal").modal("hide");
       $("#logDropdown").show();
+      $("#logInPrompt").hide();  // Hide the "First, Please Log In..." prompt
+      $("nav .navbar-brand").text(username);  // Update navbar with username
     }
   });
 
@@ -23,6 +25,8 @@ $(document).ready(function () {
       $("#myBtn").text("Login").removeClass("btn-danger").addClass("btn-primary");
       $("#logDropdown").hide();
       $("#logContainer").empty();
+      $("#logInPrompt").show();  // Show the "First, Please Log In..." prompt
+      $("nav .navbar-brand").text("🐷RQC🐷");  // Revert navbar text to default
     }
   });
 
@@ -114,11 +118,11 @@ $(document).ready(function () {
 
     // If we're updating, replace the previous entry in the DOM
     if ($(this).data("editing")) {
-      const entryDate = $(this).data("entryDate");
-      $(`[data-id="${entryDate}"]`).replaceWith(entryHtml);
-      $(this).removeData("editing");  // Clear the editing flag
+        const entryDate = $(this).data("entryDate");
+        $(`[data-id="${entryDate}"]`).replaceWith(entryHtml);
+        $(this).removeData("editing");  // Clear the editing flag
     } else {
-      $("#previousEntries").prepend(entryHtml);
+        $("#previousEntries").prepend(entryHtml);
     }
 
     $("#entryForm")[0].reset();
@@ -127,42 +131,56 @@ $(document).ready(function () {
     const savedEntries = JSON.parse(localStorage.getItem("logEntries") || "[]");
     const index = savedEntries.findIndex(entry => entry.date === newEntry.date);
     if (index > -1) {
-      savedEntries[index] = newEntry; // Update the existing entry
+        savedEntries[index] = newEntry; // Update the existing entry
     } else {
-      savedEntries.push(newEntry); // Add a new entry
+        savedEntries.push(newEntry); // Add a new entry
     }
     localStorage.setItem("logEntries", JSON.stringify(savedEntries));
   });
 
-  // Handle delete button click
+  // Handle delete button click with confirmation
   $(document).on("click", ".delete-btn", function () {
     const entryDiv = $(this).closest('.border');
     const entryDate = entryDiv.data('id');
+    const deleteModal = $("#deleteConfirmationModal");
 
-    // Remove the entry from the DOM
-    entryDiv.remove();
+    // Show the confirmation modal
+    deleteModal.modal('show');
 
-    // Optional: remove the entry from localStorage as well
-    let savedEntries = JSON.parse(localStorage.getItem("logEntries") || "[]");
-    savedEntries = savedEntries.filter(entry => entry.date !== entryDate);
-    localStorage.setItem("logEntries", JSON.stringify(savedEntries));
+    // If user confirms deletion
+    deleteModal.find("#confirmDeleteBtn").click(function () {
+      entryDiv.remove();  // Remove the entry from the DOM
+
+      // Remove the entry from localStorage as well
+      let savedEntries = JSON.parse(localStorage.getItem("logEntries") || "[]");
+      savedEntries = savedEntries.filter(entry => entry.date !== entryDate);
+      localStorage.setItem("logEntries", JSON.stringify(savedEntries));
+
+      deleteModal.modal('hide');  // Hide the confirmation modal
+    });
+
+    // If user cancels, hide the modal
+    deleteModal.find("#cancelDeleteBtn").click(function () {
+      deleteModal.modal('hide');
+    });
   });
 
-  // Handle edit button click
-  $(document).on("click", ".edit-btn", function () {
-    const entryDiv = $(this).closest('.border');
-    const entryDate = entryDiv.data('id');
-    const entryNote = entryDiv.find('strong').next().text().trim();
+ // Handle edit button click
+$(document).on("click", ".edit-btn", function () {
+  const entryDiv = $(this).closest('.border');
+  const entryDate = entryDiv.data('id');
+  const entryNote = entryDiv.find('strong').next().text().trim();
 
-    // Pre-fill the form with the entry's data
-    $("#entryDate").val(entryDate);
-    $("#entryComments").val(entryNote);
+  // Pre-fill the form with the entry's data
+  $("#entryDate").val(entryDate);
+  $("#entryComments").val(entryNote);  // Pre-fill the comment (note) field in the modal
 
-    // Change the save button to "Update"
-    const form = $("#entryForm");
-    form.find('button').text("Update").removeClass("btn-success").addClass("btn-info");
+  // Change the save button to "Update"
+  const form = $("#entryForm");
+  form.find('button').text("Update").removeClass("btn-success").addClass("btn-info");
 
-    // Mark the form as "editing" and associate the entry date for later identification
-    form.data("editing", true).data("entryDate", entryDate);
-  });
+  // Mark the form as "editing" and associate the entry date for later identification
+  form.data("editing", true).data("entryDate", entryDate);
+});
+
 });

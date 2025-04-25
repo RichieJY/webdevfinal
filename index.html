@@ -22,12 +22,6 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="" target="_blank">Home</a>
                     </li>
-<!--                 <li class="nav-item">
-                        <a class="nav-link" href="https://discord.gg/CuqfrW3E" target="_blank">Discord</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://store.steampowered.com/app/221100/DayZ/" target="_blank">Download DayZ</a>
-                    </li>-->   
                     <li class="nav-item">
                         <a class="nav-link" href="style/wireframe.png" target="_blank">Wireframe</a>
                     <li class="nav-item">
@@ -103,11 +97,34 @@
         <li><a class="dropdown-item" href="#" id="serverLogOption">Server Log</a></li>        
     </ul>
   </div>
-  
+ 
+
 <!-- placeholder for dynamic log content...... -->
 <div id="logContainer" class="text-center mt-4"></div>
 
-  
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirm Deletion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete this entry?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Yes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>Author: Richie Y / Class: CIS-376, Web Dev / Date: 04/25/2024 / Notes: Final Web Dev Project</p>
+</footer>
+
       
 <!--Scripts-->
 <!-- jQuery -->
@@ -119,3 +136,4 @@
 
 
 </body>
+</html>
