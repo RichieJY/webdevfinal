@@ -15,10 +15,11 @@ One thing I learned is how powerful modal windows are — I originally was just 
 This is the background photo, not mine. https://www.reddit.com/r/dayz/comments/14oz5wd/squad_and_i_ran_into_a_new_player_and_escorted/
 
 ## References / Sources include:
-> W3 Schools
-> Codecademy
-> Codepen
-> VS Code
+- W3 Schools
+- Codecademy
+- Codepen
+- VS Code
+
 
 # Cool Code Example
 ```javascript
