@@ -25,12 +25,12 @@ $(document).ready(function () {
       $("#myBtn").text("Login").removeClass("btn-danger").addClass("btn-primary");
       $("#logDropdown").hide();
       $("#logContainer").empty();
-      $("#logInPrompt").show();  // Show the "First, Please Log In..." prompt
+      $("#logInPrompt").show();  
       $("nav .navbar-brand").text("🐷RQC🐷");  // Revert navbar text to default
     }
   });
 
-  // Load and display logs based on type
+  // Load and display logs
   function renderLogCard(type) {
     fetch('data/data.json')
       .then(res => res.json())
@@ -77,7 +77,7 @@ $(document).ready(function () {
       .catch(error => console.error("Error fetching the logs:", error));
   }
 
-  // Hook up each dropdown item
+  // Hook up each dropdown item...
   $("#eventLogOption").click(e => {
     e.preventDefault();
     renderLogCard("event");
@@ -93,7 +93,7 @@ $(document).ready(function () {
     renderLogCard("server");
   });
 
-  // Handle save (new entry or update)
+  // Handle save
   $(document).on("submit", "#entryForm", function (e) {
     e.preventDefault();
     const type = $(this).data("logtype");
@@ -116,24 +116,24 @@ $(document).ready(function () {
       </div>
     `;
 
-    // If we're updating, replace the previous entry in the DOM
+    
     if ($(this).data("editing")) {
         const entryDate = $(this).data("entryDate");
         $(`[data-id="${entryDate}"]`).replaceWith(entryHtml);
-        $(this).removeData("editing");  // Clear the editing flag
+        $(this).removeData("editing");  // Clear editing 
     } else {
         $("#previousEntries").prepend(entryHtml);
     }
 
     $("#entryForm")[0].reset();
 
-    // Optional: save to localStorage (does NOT affect logs.json)
+    // Optional: save to localStorage 
     const savedEntries = JSON.parse(localStorage.getItem("logEntries") || "[]");
     const index = savedEntries.findIndex(entry => entry.date === newEntry.date);
     if (index > -1) {
-        savedEntries[index] = newEntry; // Update the existing entry
+        savedEntries[index] = newEntry; // Update existing entry
     } else {
-        savedEntries.push(newEntry); // Add a new entry
+        savedEntries.push(newEntry); // Add new entry
     }
     localStorage.setItem("logEntries", JSON.stringify(savedEntries));
   });
@@ -144,7 +144,7 @@ $(document).ready(function () {
     const entryDate = entryDiv.data('id');
     const deleteModal = $("#deleteConfirmationModal");
 
-    // Show the confirmation modal
+    // confirmation modal
     deleteModal.modal('show');
 
     // If user confirms deletion
