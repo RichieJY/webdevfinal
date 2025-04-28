@@ -11,6 +11,15 @@ I have a terrible memory and often forget things myself and my group experience 
 I built it from the ground up using my imagination. I had a clear vision of what I wanted.  
 One thing I learned is how powerful modal windows are — I originally was just going to populate things in the HTML.
 
+## Background Photo (not mine)
+This is the background photo, not mine. https://www.reddit.com/r/dayz/comments/14oz5wd/squad_and_i_ran_into_a_new_player_and_escorted/
+
+## References / Sources include:
+> W3 Schools
+> Codecademy
+> Codepen
+> VS Code
+
 # Cool Code Example
 ```javascript
 $(document).on("click", ".delete-btn", function () {
